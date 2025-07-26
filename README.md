@@ -1,6 +1,6 @@
 # HTTP Web Crawler
 
-A web crawler built by following the [FreeCodeCamp "HTTP Networking in Node.js" course](https://www.freecodecamp.org/news/http-networking-in-node-js-a-beginners-guide/).
+A web crawler built by following the [FreeCodeCamp "HTTP Networking in Node.js" course](https://youtu.be/2JYT5f2isg4).
 
 This tool is designed for SEO experts to analyze the internal linking structure of a website, showing which pages link to other pages within the same domain.
 
