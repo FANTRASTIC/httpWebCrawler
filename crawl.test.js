@@ -33,10 +33,11 @@ test('normalizeURL strip http', () => {
 })
 
 test('getURLsFromHTML absolute urls', () => {
-    const inputHTMLBody = `
+    //handling absolute urls
+    const inputHTMLBody = ` 
     <html>
         <body>
-            <a href = "https://blog.boot.dev/">
+            <a href = "https://blog.boot.dev/"> 
                 Boot.dev blog
             </a>
         </body>
@@ -49,6 +50,7 @@ test('getURLsFromHTML absolute urls', () => {
 })
 
 test('getURLsFromHTML relative urls', () => {
+    //handling relatitve urls 
     const inputHTMLBody = `
     <html>
         <body>
@@ -80,5 +82,22 @@ test('getURLsFromHTML both url', () => {
     const inputBaseURL = "https://blog.boot.dev"
     const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL)
     const expected = ["https://blog.boot.dev/path1/", "https://blog.boot.dev/path2/"]
+    expect(actual).toEqual(expected)
+})
+
+test('getURLsFromHTML Invalid URL', () => {
+    //handling absolute urls
+    const inputHTMLBody = ` 
+    <html>
+        <body>
+            <a href = "invalid"> 
+                Invalid URL
+            </a>
+        </body>
+    </html>
+    `
+    const inputBaseURL = "https://blog.boot.dev"
+    const actual = getURLsFromHTML(inputHTMLBody, inputBaseURL)
+    const expected = []
     expect(actual).toEqual(expected)
 })

@@ -6,12 +6,23 @@ function getURLsFromHTML(htmlBody, baseURL){
     const dom = new JSDOM(htmlBody)
     const linkElements = dom.window.document.querySelectorAll('a') // grabs all the anchor tag or link tag 
     for(const linkElement of linkElements){
-        if(linkElement.href.slice(0,1)=== '/'){
-            //absolute url
-            urls.push(`${baseURL}${linkElement.href}`)
-        }else{
+        if(linkElement.href.slice(0,1)=== '/'){ //evaluates the logic behind having just the /path/ in the url
             //relative url
-            urls.push(linkElement.href)
+            try{
+                const urlObj = new URL(`${baseURL}${linkElement.href}`);
+                urls.push(urlObj.href)
+            } catch(err){
+                console.log(`The error with relative url was ${err.message}`)
+            }
+        }else{
+            //absolute url
+             try{
+                const urlObj = new URL(linkElement.href);
+                urls.push(urlObj.href)
+            } catch(err){
+                console.log(`The error with absolute url was ${err.message}`)
+            }
+        
         }
        
        
@@ -30,4 +41,5 @@ function normalizeURL(urlString){
 module.exports = {
     normalizeURL,
     getURLsFromHTML
+
 }
